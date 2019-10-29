@@ -14,7 +14,7 @@ CKPT_PATH = '../model/resnet_v1_50.ckpt'
 # tensorboard
 FILEWRITER_PATH = '../tensorboard/'
 # parameters
-LEARNING_RATE = 1e-4
+LEARNING_RATE = 1e-5
 EPOCH = 100
 BATCH_SIZE = 128
 FC_SIZE = 2048
@@ -180,7 +180,8 @@ def main():
                 if train_batch_count % 10 == 0:
                     train_predict, summary = sess.run([predict, merged_summary],
                             feed_dict={input_images:X_train_batch, input_labels:y_train_batch})
-
+                    #print('train_predict = ', train_predict)
+                    #print('ground_truth  = ', sess.run(tf.argmax(y_train_batch)))
                     print('EPOCH %d/%d BATCH %d/%d, TRAIN LOSS=%.3f, TRAIN ACC=%.3f'\
                             %(epoch+1, EPOCH, train_batch_count+1, num_iteration, train_loss, train_acc))
 
